@@ -1,0 +1,13 @@
+universe = vanilla
+Executable = condor-exec.csh
+Arguments = qcdGen_CP3.cmnd qcd_CP3.root
+Should_Transfer_Files = YES
+WhenToTransferOutput = ON_EXIT
+request_cpus = 1
+request_memory = 2000
+Transfer_Input_Files = condor-exec.csh, env.tgz
+Output = logs/qcdGen_$(Cluster)_$(Process).stdout
+Error = logs/qcdGen_$(Cluster)_$(Process).stderr
+Log = logs/qcdGen_$(Cluster)_$(Process).log
+x509userproxy = $ENV(X509_USER_PROXY)
+Queue 1

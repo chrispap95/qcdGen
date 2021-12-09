@@ -7,7 +7,7 @@
 
 using namespace Pythia8;
 
-int main() {
+int main(int argc, char **argv) {
 
   // Generator.
   Pythia pythia;
@@ -16,7 +16,7 @@ int main() {
   //Event& event = pythia.event;
 
   // Read in commands from external file.
-  pythia.readFile("qcdGen.cmnd");
+  pythia.readFile(argv[1]);
 
   // Extract settings to be used in the main program.
   int nEvent = pythia.mode("Main:numberOfEvents");
@@ -26,7 +26,7 @@ int main() {
   pythia.init();
 
   // Set up the ROOT TFile and TTree.
-  TFile *file = TFile::Open("qcd.root","recreate");
+  TFile *file = TFile::Open(argv[2],"recreate");
   Event *event = &pythia.event;
   TTree *tree = new TTree("tree","tree");
   int nTracks;
